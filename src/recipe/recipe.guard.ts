@@ -23,7 +23,7 @@ export class RecipeGuard implements CanActivate {
       .then((decodedToken) => {
         const uid = decodedToken.uid;
         request['uid'] = uid;
-        return true;
+        console.log(uid);
       })
       .catch(() => {
         throw new UnauthorizedException();

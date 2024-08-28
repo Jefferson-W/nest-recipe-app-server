@@ -5,13 +5,11 @@ import {
   Post,
   Param,
   Delete,
-  Headers,
-  Res,
   UseGuards,
+  Body,
 } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
 import { CreateRecipeDto } from './dto/create-recipe.dto';
-import { Response } from 'express';
 import { RecipeGuard } from './recipe.guard';
 
 @UseGuards(RecipeGuard)
@@ -20,7 +18,7 @@ export class RecipeController {
   constructor(private readonly recipeService: RecipeService) { }
 
   @Post('teste')
-  create(@Res() res: Response, @Headers() user: CreateRecipeDto) {
+  create(@Body() user: CreateRecipeDto) {
     this.recipeService.create(user);
 
   }

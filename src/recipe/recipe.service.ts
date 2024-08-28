@@ -6,15 +6,17 @@ initializeApp({
   credential: cert('./src/recipe/utils/serviceAccountKey.json'),
 });
 
+global.users = [];
+
 @Injectable()
 export class RecipeService {
   create(user: CreateRecipeDto) {
-    console.log(user);
+    global.users.push({ user });
     return user;
   }
 
   findAll(): string {
-    return `This action returns all recipe`;
+    return global.users;
   }
 
   findOne(id: number) {
