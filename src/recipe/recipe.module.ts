@@ -1,10 +1,10 @@
 import {
   Module,
-  NestModule,
-  MiddlewareConsumer,
-  RequestMethod,
+  // NestModule,
+  // MiddlewareConsumer,
+  // RequestMethod,
 } from '@nestjs/common';
-import { VerifyTokenMiddleware } from './recipe.middleware';
+// import { VerifyTokenMiddleware } from './recipe.middleware';
 import { RecipeController } from './recipe.controller';
 import { RecipeService } from './recipe.service';
 
@@ -12,10 +12,12 @@ import { RecipeService } from './recipe.service';
   controllers: [RecipeController],
   providers: [RecipeService],
 })
-export class RecipeModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(VerifyTokenMiddleware)
-      .forRoutes({ path: '*', method: RequestMethod.ALL });
-  }
-}
+export class RecipeModule {}
+
+// implements NestModule {
+//   configure(consumer: MiddlewareConsumer) {
+//     consumer
+//       .apply(VerifyTokenMiddleware)
+//       .forRoutes({ path: '*', method: RequestMethod.GET });
+//   }
+// }

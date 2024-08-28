@@ -9,6 +9,7 @@ initializeApp({
 @Injectable()
 export class RecipeService {
   create(user: CreateRecipeDto) {
+    console.log(user);
     return user;
   }
 
