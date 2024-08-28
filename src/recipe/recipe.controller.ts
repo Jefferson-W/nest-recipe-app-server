@@ -5,8 +5,6 @@ import {
   Post,
   Param,
   Delete,
-  Body,
-  BadRequestException,
   Headers,
   Res,
 } from '@nestjs/common';
@@ -17,14 +15,6 @@ import { Response } from 'express';
 @Controller('recipe')
 export class RecipeController {
   constructor(private readonly recipeService: RecipeService) { }
-
-  @Post()
-  createTeste(@Body() user: CreateRecipeDto) {
-    if (!user.email || !user.name)
-      throw new BadRequestException('User or Email invalid');
-
-    return this.recipeService.create(user);
-  }
 
   @Post('teste')
   create(@Res() res: Response, @Headers() user: CreateRecipeDto) {
