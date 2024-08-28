@@ -8,9 +8,11 @@ import {
   Body,
   BadRequestException,
   Headers,
+  Res,
 } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
 import { CreateRecipeDto } from './dto/create-recipe.dto';
+import { Response } from 'express';
 
 @Controller('recipe')
 export class RecipeController {
@@ -25,11 +27,8 @@ export class RecipeController {
   }
 
   @Post('teste')
-  create(@Headers() user: CreateRecipeDto) {
-    if (!user.authorization)
-      throw new BadRequestException('Missing authorization header');
-
-     this.recipeService.create(user);
+  create(@Res() res: Response, @Headers() user: CreateRecipeDto) {
+    this.recipeService.create(user);
   }
 
   @Get()

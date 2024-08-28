@@ -1,6 +1,5 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateRecipeDto } from './dto/create-recipe.dto';
-import { getAuth } from 'firebase-admin/auth';
 import { initializeApp, cert } from 'firebase-admin/app';
 
 initializeApp({
@@ -17,21 +16,7 @@ export class RecipeService {
   }
 
   create(user: CreateRecipeDto) {
-    const idToken = user.authorization;
-
-    getAuth()
-      .verifyIdToken(idToken)
-      .then((decodedToken) => {
-        const uid = decodedToken.uid;
-        user.uid = uid;
-        console.log('\n\nEsse é o uid:\n', user.uid);
-        return user.uid;
-      })
-      .catch(() => {
-        return new UnauthorizedException();
-      });
-
-    return user.uid;
+    return user;
   }
 
   findAll(): any[] {
